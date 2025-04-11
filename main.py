@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import openai
 import os
+import traceback
 
 app = Flask(__name__)
 openai.api_key = os.environ["OPENAI_API_KEY"]
@@ -22,12 +23,15 @@ def webhook():
             temperature=0.8
         )
 
+        print("OpenAI response object:", response)
+
         answer = response.choices[0].message.content.strip()
         print("Answer:", answer)
 
         return jsonify({"fulfillmentText": answer})
 
     except Exception as e:
+        traceback.print_exc()  # 🔥 Prints full error stack trace
         print("Error:", str(e))
         return jsonify({"fulfillmentText": "An error occurred."}), 500
 
