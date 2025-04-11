@@ -37,3 +37,11 @@ def webhook():
 
     answer = response['choices'][0]['message']['content'].strip()
     return jsonify({"fulfillmentText": answer})
+
+response = openai.Completion.create(
+    model="gpt-4",
+    prompt=prompt,
+    max_tokens=150,
+    temperature=0.8
+)
+answer = response['choices'][0]['text'].strip()
