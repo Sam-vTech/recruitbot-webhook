@@ -18,7 +18,7 @@ def webhook():
         prompt = f"You are pretending to be a job candidate in a mock interview. Provide a detailed and natural response to this recruiter question: '{user_input}'"
 
         response = openai.chat.completions.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.8
         )
