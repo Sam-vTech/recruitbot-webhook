@@ -16,14 +16,13 @@ def webhook():
 
         prompt = f"You are pretending to be a job candidate in a mock interview. Provide a detailed and natural response to this recruiter question: '{user_input}'"
 
-        response = openai.Completion.create(
+        response = openai.chat.completions.create(
             model="gpt-4",
-            prompt=prompt,            max_tokens=150,
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.8
         )
-        print("OpenAI response:", response)
 
-        answer = response['choices'][0]['text'].strip()
+        answer = response.choices[0].message.content.strip()
         print("Answer:", answer)
 
         return jsonify({"fulfillmentText": answer})
