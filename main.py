@@ -26,3 +26,6 @@ if __name__ == '__main__':
 @app.route('/')
 def home():
     return "Server is running!"
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
