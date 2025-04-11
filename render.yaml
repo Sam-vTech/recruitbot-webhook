@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: recruitbot-webhook
+    env: python
+    buildCommand: ""
+    startCommand: "python main.py"
+    envVars:
+      - key: OPENAI_API_KEY
+        value: YOUR_OPENAI_API_KEY
